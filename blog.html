@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مدونة فندق لوفنج هومز للكلاب - مقالات ونصائح حول العناية بالكلاب وتدريبها.">
+    <title>المدونة | لوفنج هومز</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .blog-desc {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-link {
+            font-weight: bold;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .blog-link:hover {
+            color: var(--accent-hover);
+            padding-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">المدونة</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span><i class="fa-solid fa-chevron-left"></i></span>
+                <span>المدونة</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="bg-light">
+        <div class="container">
+            <div class="blog-controls">
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-cat="all">الكل</button>
+                    <button class="filter-btn" data-cat="health">صحة</button>
+                    <button class="filter-btn" data-cat="nutrition">تغذية</button>
+                    <button class="filter-btn" data-cat="training">تدريب</button>
+                </div>
+                <div class="blog-search">
+                    <input type="text" id="blogLocalSearch" placeholder="ابحث في المقالات...">
+                </div>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog 1 -->
+                <div class="blog-card" data-cat="health">
+                    <img src="Photos and videos/4.avif" alt="صورة مدونة" class="blog-img" loading="lazy">
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="fa-regular fa-clock"></i> 10 مارس 2026</span>
+                        <h3 class="blog-title">أهمية المشي اليومي لكلبك وكيف يؤثر على صحته النفسية</h3>
+                        <p class="blog-desc">المشي اليومي ليس مجرد نشاط بدني للكلاب، بل هو عنصر أساسي في صحتهم النفسية.
+                            تعرف على فوائد المشي وكيف يساعد في تقليل التوتر.</p>
+                        <a href="#" class="blog-link">اقرأ المزيد <i class="fa-solid fa-arrow-left"
+                                style="margin-right: 5px;"></i></a>
+                        <div class="share-btns">
+                            <a href="#" class="share-btn share-fb" aria-label="شارك على فيسبوك"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn share-tw" aria-label="شارك على تويتر"><i
+                                    class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="share-btn share-wa" aria-label="شارك على واتس اب"><i
+                                    class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog 2 -->
+                <div class="blog-card" data-cat="nutrition">
+                    <img src="Photos and videos/5.avif" alt="صورة مدونة" class="blog-img" loading="lazy">
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="fa-regular fa-clock"></i> 5 مارس 2026</span>
+                        <h3 class="blog-title">كيف تختار أفضل الأطعمة الغذائية لكلبك؟</h3>
+                        <p class="blog-desc">تغذية كلبك بشكل صحيح هي مفتاح حياة طويلة وصحية. نناقش في هذا المقال أهم
+                            المكونات التي يجب أن تبحث عنها في طعام كلبك.</p>
+                        <a href="#" class="blog-link">اقرأ المزيد <i class="fa-solid fa-arrow-left"
+                                style="margin-right: 5px;"></i></a>
+                        <div class="share-btns">
+                            <a href="#" class="share-btn share-fb" aria-label="شارك على فيسبوك"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn share-tw" aria-label="شارك على تويتر"><i
+                                    class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="share-btn share-wa" aria-label="شارك على واتس اب"><i
+                                    class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog 3 -->
+                <div class="blog-card" data-cat="training">
+                    <img src="Photos and videos/6.avif" alt="صورة مدونة" class="blog-img" loading="lazy">
+                    <div class="blog-content">
+                        <span class="blog-date"><i class="fa-regular fa-clock"></i> 28 فبراير 2026</span>
+                        <h3 class="blog-title">نصائح لتدريب الجراء على الطاعة بطريقة إيجابية</h3>
+                        <p class="blog-desc">التدريب الإيجابي هو أسرع وأفضل طرق تعليم الجراء. إليك بعض النصائح التي
+                            يقدمها خبراؤنا في لوفنج هومز لتعليم جروك.</p>
+                        <a href="#" class="blog-link">اقرأ المزيد <i class="fa-solid fa-arrow-left"
+                                style="margin-right: 5px;"></i></a>
+                        <div class="share-btns">
+                            <a href="#" class="share-btn share-fb" aria-label="شارك على فيسبوك"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn share-tw" aria-label="شارك على تويتر"><i
+                                    class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="share-btn share-wa" aria-label="شارك على واتس اب"><i
+                                    class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>موقعنا</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118151.05318625298!2d114.116666!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2sHong%20Kong!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                        width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="خريطة موقع لوفنج هومز"></iframe>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+</body>
+
+</html>

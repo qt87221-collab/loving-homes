@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="تعرّف على قصة لوفنج هومز، فريق العمل المتخصص، ورؤيتنا في تقديم أفضل رعاية للكلاب في هونغ كونغ.">
+    <title>من نحن | لوفنج هومز - فندق كلاب فاخر في هونغ كونغ</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+
+    <style>
+        /* =========================================================================
+           About Page Specific Styles
+           ========================================================================= */
+
+        /* --- Story Section --- */
+        .story-section {
+            padding: 6rem 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .story-image-wrap {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .story-image-wrap img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .story-image-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        .story-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(123, 80, 55, 0.35);
+        }
+
+        .story-badge i {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+        }
+
+        .story-content {
+            padding-top: 1rem;
+        }
+
+        .story-label {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .story-content h2 {
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--secondary-color);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        /* --- Vision & Mission --- */
+        .vm-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #5A3A28 100%);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-section::before {
+            content: '\f1b0';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            font-size: 25rem;
+            color: rgba(255, 255, 255, 0.03);
+            top: -50px;
+            left: -50px;
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vm-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .vm-card:hover {
+            background: rgba(255, 255, 255, 0.13);
+            transform: translateY(-6px);
+        }
+
+        .vm-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.8rem;
+            color: var(--accent-color);
+            border: 2px solid rgba(129, 199, 132, 0.4);
+        }
+
+        .vm-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .vm-card p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* --- Values Section --- */
+        .values-section {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .value-icon {
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, var(--secondary-color), #eee);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 0 auto 1.5rem;
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        /* --- Team Section --- */
+        .team-section {
+            padding: 6rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-img-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .team-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img-wrap img {
+            transform: scale(1.07);
+        }
+
+        .team-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(123, 80, 55, 0.75), transparent 60%);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .team-card:hover .team-overlay {
+            opacity: 1;
+        }
+
+        .team-social {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .team-social a {
+            width: 38px;
+            height: 38px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .team-social a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .team-info {
+            padding: 1.8rem 1.5rem;
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .team-bio {
+            font-size: 0.93rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* --- Facilities Section --- */
+        .facilities-section {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .facility-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .facility-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .facility-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+            min-height: 220px;
+        }
+
+        .facility-item:first-child img {
+            min-height: 460px;
+        }
+
+        .facility-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .facility-caption {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            padding: 1.2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+            color: white;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .facility-item:hover .facility-caption {
+            transform: translateY(0);
+        }
+
+        /* --- CTA Banner --- */
+        .cta-about {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #4CAF50 100%);
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-about h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-about p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.92;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-about .btn {
+            background: white;
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            padding: 14px 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-about .btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 991px) {
+
+            .story-grid,
+            .vm-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-image-wrap {
+                max-height: 380px;
+            }
+
+            .story-image-wrap img {
+                height: 380px;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .facility-item:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .facility-item:first-child img {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-item .stat-number {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .facilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .facility-item:first-child {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div>
+            <h1 class="page-title">من نحن</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>من نحن</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+
+                <!-- Image Side -->
+                <div class="story-image-wrap">
+                    <img src="Photos and videos/1.avif" alt="فريق لوفنج هومز يعتني بالكلاب" loading="lazy">
+                    <div class="story-badge">
+                        <i class="fa-solid fa-paw"></i>
+                        <span>منذ عام 2018</span>
+                    </div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="story-content">
+                    <span class="story-label">قصتنا</span>
+                    <h2>رحلة بدأت بشغف حقيقي برعاية الكلاب</h2>
+                    <p>
+                        في عام 2018، انطلقت فكرة لوفنج هومز من قلب هونغ كونغ، حين أدركت مؤسستنا <strong>ميا
+                            تشان</strong> أن الكلاب في المدينة يستحقون خدمات راقية تعكس مكانتهم في قلوب أصحابهم. لم يكن
+                        الأمر مجرد عمل تجاري، بل كان حلمًا نبع من رحلتها مع كلبها المحبوب "موكي".
+                    </p>
+                    <p>
+                        بدأنا بغرفة واحدة وقلب كبير، وسرعان ما نمت لوفنج هومز لتصبح وجهة الكلاب الفاخرة الأولى في هونغ
+                        كونغ. يضم فريقنا اليوم أكثر من 20 متخصصًا في رعاية الحيوانات الأليفة، ويمتد مرفقنا على مساحة
+                        3000 متر مربع مجهزة بأحدث التقنيات.
+                    </p>
+                    <p>
+                        فلسفتنا بسيطة: كلبك ليس مجرد حيوان أليف، إنه فرد من العائلة. ومن هذا الإيمان ترتكز كل خدمة
+                        نقدمها، وكل قرار نتخذه.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="story-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">+5000</span>
+                            <span class="stat-label">كلب سعيد</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">+20</span>
+                            <span class="stat-label">متخصص محترف</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">سنوات خبرة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">رعاية مستمرة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section class="vm-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white; margin-bottom: 0.5rem;">رؤيتنا ورسالتنا</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.7); margin-bottom: 3.5rem;">القيم التي توجه كل
+                ما نقوم به</p>
+
+            <div class="vm-grid">
+                <!-- Vision -->
+                <div class="vm-card">
+                    <div class="vm-icon">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3>رؤيتنا</h3>
+                    <p>
+                        أن نكون الوجهة الأولى والأكثر ثقة لرعاية الكلاب في آسيا، نموذجًا يُقتدى به في دمج الفخامة
+                        بالعناية الحقيقية، حيث يشعر كل كلب بالحب والأمان كما لو كان في منزله.
+                    </p>
+                </div>
+
+                <!-- Mission -->
+                <div class="vm-card">
+                    <div class="vm-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3>رسالتنا</h3>
+                    <p>
+                        تقديم خدمات رعاية استثنائية تجمع بين أعلى معايير الرفاهية والصحة والسعادة لكل كلب يُعهد إلينا
+                        برعايته، مع بناء علاقة ثقة متينة مع أصحاب الكلاب من خلال الشفافية والتواصل الدائم.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">قيمنا الجوهرية</h2>
+            <p class="section-subtitle">المبادئ التي تشكل هويتنا في كل لحظة</p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h4>الشغف والحب</h4>
+                    <p>نؤمن أن الرعاية الحقيقية تبدأ من القلب. كل فرد في فريقنا يحمل شغفًا حقيقيًا بالكلاب.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4>الأمان أولًا</h4>
+                    <p>سلامة كلبك هي أولويتنا القصوى. نلتزم بأعلى معايير الأمان والنظافة في جميع أنحاء المرفق.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h4>التميز المستمر</h4>
+                    <p>لا نكتفي بالجيد، نسعى دائمًا للأفضل. نتدرب باستمرار لنواكب أحدث ممارسات رعاية الكلاب.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h4>التواصل الشفاف</h4>
+                    <p>نبقيك على اطلاع دائم بحالة كلبك عبر تقارير يومية وكاميرات مباشرة لراحة بالك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">فريق العمل</h2>
+            <p class="section-subtitle">تعرّف على العائلة التي ترعى كلبك بكل حب</p>
+
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="team-card">
+                    <div class="team-img-wrap">
+                        <img src="Photos and videos/21.avif" alt="ميا تشان - المؤسسة والمديرة التنفيذية"
+                            loading="lazy">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#" aria-label="إنستغرام ميا تشان"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" aria-label="لينكد إن ميا تشان"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">ميا تشان</h3>
+                        <p class="team-role">المؤسسة والمديرة التنفيذية</p>
+                        <p class="team-bio">15 عامًا من الخبرة في رعاية الحيوانات الأليفة. شغفها بالكلاب هو الدافع وراء
+                            تأسيس لوفنج هومز.</p>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="team-card">
+                    <div class="team-img-wrap">
+                        <img src="Photos and videos/22.avif" alt="دكتور جيمس لي - الطبيب البيطري" loading="lazy">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#" aria-label="إنستغرام دكتور جيمس"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" aria-label="لينكد إن دكتور جيمس"><i
+                                        class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">د. جيمس لي</h3>
+                        <p class="team-role">الطبيب البيطري الرئيسي</p>
+                        <p class="team-bio">متخصص في طب الحيوانات الأليفة مع شهادة من جامعة هونغ كونغ وخبرة عشر سنوات
+                            سريرية.</p>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="team-card">
+                    <div class="team-img-wrap">
+                        <img src="Photos and videos/24.avif" alt="صوفيا وونغ - مديرة خدمات الحلاقة" loading="lazy">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#" aria-label="إنستغرام صوفيا"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" aria-label="لينكد إن صوفيا"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">صوفيا وونغ</h3>
+                        <p class="team-role">مديرة خدمات الحلاقة</p>
+                        <p class="team-bio">حاصلة على شهادة حلاقة الكلاب الدولية من اليابان، تميل إلى الدقة والإبداع في
+                            كل تصفيفة.</p>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="team-card">
+                    <div class="team-img-wrap">
+                        <img src="Photos and videos/34.webp" alt="ريان نغ - المشرف على الأنشطة والمشي" loading="lazy">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#" aria-label="إنستغرام ريان"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" aria-label="لينكد إن ريان"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">ريان نغ</h3>
+                        <p class="team-role">مشرف الأنشطة والمشي</p>
+                        <p class="team-bio">مدرب معتمد في سلوكيات الكلاب، يصمم برامج نشاط مخصصة لكل كلب حسب طاقته وحجمه.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities-section">
+        <div class="container">
+            <h2 class="section-title">مرافقنا</h2>
+            <p class="section-subtitle">بيئة فاخرة صُممت بحب لراحة كلبك</p>
+
+            <div class="facilities-grid">
+                <div class="facility-item">
+                    <img src="Photos and videos/25.avif" alt="منطقة اللعب الكبرى" loading="lazy">
+                    <div class="facility-caption"><i class="fa-solid fa-dog" style="margin-left: 8px;"></i>منطقة اللعب
+                        الكبرى</div>
+                </div>
+                <div class="facility-item">
+                    <img src="Photos and videos/9.avif" alt="صالون الحلاقة الاحترافي" loading="lazy">
+                    <div class="facility-caption"><i class="fa-solid fa-scissors" style="margin-left: 8px;"></i>صالون
+                        الحلاقة</div>
+                </div>
+                <div class="facility-item">
+                    <img src="Photos and videos/32.avif" alt="غرف الإقامة الفاخرة" loading="lazy">
+                    <div class="facility-caption"><i class="fa-solid fa-bed" style="margin-left: 8px;"></i>غرف الإقامة
+                        الفاخرة</div>
+                </div>
+                <div class="facility-item">
+                    <img src="Photos and videos/13.avif" alt="العيادة البيطرية" loading="lazy">
+                    <div class="facility-caption"><i class="fa-solid fa-stethoscope"
+                            style="margin-left: 8px;"></i>العيادة البيطرية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-about">
+        <div class="container">
+            <h2>جاهز لتجربة الفرق؟</h2>
+            <p>سلّمنا كلبك بثقة واستمتع براحة البال أينما كنت</p>
+            <a href="booking.html" class="btn">
+                احجز الآن <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="reviews-section bg-light">
+        <div class="container">
+            <h2 class="section-title">تقييمات عملائنا</h2>
+            <p class="section-subtitle">شاهد ما يقوله أصحاب الحيوانات الأليفة عن تجربتهم في لوفنج هومز</p>
+
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card">
+                    <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testi-text">"أشكر فريق لوفنج هومز على رعايتهم الرائعة لكلبي، شعرت براحة بال أثناء سفري."
+                    </p>
+                    <h4 class="testi-name">– أحمد، هونغ كونغ</h4>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card">
+                    <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testi-text">"تجربة المشي ممتازة جداً. كلبي يعود سعيداً ونشيطاً كل يوم. خدمة رائعة
+                        وموثوقة!"</p>
+                    <h4 class="testi-name">– مريم، كولون</h4>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card">
+                    <div class="testi-stars">⭐⭐⭐⭐</div>
+                    <p class="testi-text">"خدمة طبيب بيطري 24 ساعة أعطتني طمأنينة كبيرة على صحة جروي. المكان نظيف جداً."
+                    </p>
+                    <h4 class="testi-name">– خالد، وان تشاي</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>موقعنا</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118151.05318625298!2d114.116666!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2sHong%20Kong!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                        width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="خريطة موقع لوفنج هومز"></iframe>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+</body>
+
+</html>

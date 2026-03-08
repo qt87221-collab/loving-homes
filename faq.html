@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الأسئلة الشائعة عن فندق لوفنج هومز للكلاب في هونغ كونغ.">
+    <title>الأسئلة الشائعة | لوفنج هومز</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+    <style>
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-color);
+            display: none;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">الأسئلة الشائعة</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span><i class="fa-solid fa-chevron-left"></i></span>
+                <span>الأسئلة الشائعة</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-light">
+        <div class="container faq-container">
+            <div class="faq-item">
+                <div class="faq-question">ما هي أوقات العمل في فندق الكلاب؟ <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">نحن نعمل على مدار 24 ساعة طوال أيام الأسبوع لضمان توفير الرعاية المستمرة لكلبك،
+                    ولكن أوقات الاستقبال والتسليم تكون عادةً من الساعة 8:00 صباحاً حتى 8:00 مساءً.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل أحتاج إلى إحضار طعام كلبي الخاص؟ <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">نعم، نحن نفضل أن تحضر طعام كلبك المعتاد لتجنب أي مشاكل في الجهاز الهضمي قد تنشأ
+                    نتيجة لتغيير النظام الغذائي المفاجئ. إذا لم تتمكن من ذلك، نوفر طعام عالي الجودة مقابل رسوم إضافية.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">ما التطعيمات المطلوبة قبل الإقامة؟ <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">يجب أن تكون جميع التطعيمات محدثة، بما في ذلك تطعيمات داء الكلب، البارفو،
+                    والديستمبر. يرجى إحضار السجل الطبي لكلبك عند الزيارة.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">هل يمكنني رؤية كلبي أثناء إقامته؟ <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">نعم! نحن نوفر كاميرات مراقبة متاحة 24/7 للعملاء الذين يحجزون الإقامة الفاخرة،
+                    مما يتيح لك الاطمئنان على كلبك في أي وقت من خلال هاتفك.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">كيف يمكنني حجز موعد لخدمات الحلاقة فقط؟ <i
+                        class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">يمكنك حجز موعد لخدمات الحلاقة عبر صفحة "الحجز" على موقعنا أو من خلال الاتصال بنا
+                    مباشرة عبر الهاتف أو الواتساب.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>موقعنا</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118151.05318625298!2d114.116666!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2sHong%20Kong!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                        width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="خريطة موقع لوفنج هومز"></iframe>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+    <script>
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

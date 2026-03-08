@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="تواصل مع فندق لوفنج هومز للكلاب في هونغ كونغ. نحن متواجدون للرد على استفساراتكم وحجز مواعيدكم بكل سرور.">
+    <title>اتصل بنا | لوفنج هومز</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+
+    <style>
+        .contact-layout {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-main {
+            flex: 3;
+        }
+
+        .contact-sidebar {
+            flex: 2;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(129, 199, 132, 0.1);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .contact-card-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p,
+        .contact-card a {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            line-height: 1.8;
+            display: block;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 991px) {
+            .contact-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header"
+        style="background-image: linear-gradient(rgba(123, 80, 55, 0.8), rgba(123, 80, 55, 0.9)), url('Photos and videos/18.avif');">
+        <div class="container">
+            <h1 class="page-title">يسعدنا تواصلك معنا</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span><i class="fa-solid fa-angle-left"></i></span>
+                <span>اتصل بنا</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Details & Form -->
+    <section>
+        <div class="container">
+
+            <div class="contact-layout">
+                <!-- Contact Forms Area -->
+                <div class="contact-main">
+                    <div class="form-container" style="max-width: 100%; margin: 0; padding: 3rem;">
+                        <h2 class="section-title" style="text-align: right; margin-bottom: 2rem;">أرسل لنا رسالة</h2>
+
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="cName" class="form-label">الاسم الكامل *</label>
+                                    <input type="text" id="cName" class="form-control" required
+                                        placeholder="كيف يمكننا مناداتك؟">
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="cPhone" class="form-label">رقم الهاتف *</label>
+                                    <input type="tel" id="cPhone" class="form-control" required placeholder="+852 ...">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cEmail" class="form-label">البريد الإلكتروني *</label>
+                                <input type="email" id="cEmail" class="form-control" required
+                                    placeholder="بريدك الإلكتروني للتواصل">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cSubject" class="form-label">الموضوع (اختياري)</label>
+                                <input type="text" id="cSubject" class="form-control"
+                                    placeholder="بخصوص ماذا تود التحدث إلينا؟">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cMessage" class="form-label">الرسالة *</label>
+                                <textarea id="cMessage" class="form-control" rows="6" required
+                                    placeholder="اكتب تفاصيل استفسارك هنا..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                style="padding: 15px 40px; font-size: 1.2rem;">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Sidebar -->
+                <div class="contact-sidebar">
+                    <div class="contact-card">
+                        <i class="fa-solid fa-location-dot contact-card-icon"></i>
+                        <h3 class="contact-card-title">موقعنا</h3>
+                        <p>سنترال ديسريكت<br>جزيرة هونغ كونغ، هونغ كونغ</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fa-solid fa-phone contact-card-icon"></i>
+                        <h3 class="contact-card-title">الهاتف</h3>
+                        <a href="tel:+85212345678" dir="ltr">+852 1234 5678</a>
+                        <a href="https://wa.me/85298765432" dir="ltr"><i class="fa-brands fa-whatsapp"></i> +852 9876
+                            5432</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fa-solid fa-envelope contact-card-icon"></i>
+                        <h3 class="contact-card-title">البريد الإلكتروني</h3>
+                        <a href="mailto:hello@lovinghomes.hk">hello@lovinghomes.hk</a>
+                        <a href="mailto:support@lovinghomes.hk">support@lovinghomes.hk</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div style="margin-top: 5rem;">
+                <h2 class="section-title" style="margin-bottom: 2rem;">موقعنا على الخريطة</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118151.05318625298!2d114.116666!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2sHong%20Kong!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" title="خريطة لوفنج هومز في هونغ كونغ"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+</body>
+
+</html>

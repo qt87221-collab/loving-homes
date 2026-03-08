@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="احجز إقامة كلبك، موعد حلاقة، أو جولات مشي في لوفنج هومز بكل سهولة.">
+    <title>الحجز | لوفنج هومز</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+
+    <style>
+        .booking-wrapper {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .booking-form {
+            flex: 2;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .booking-sidebar {
+            flex: 1;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .sidebar-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-list li i {
+            color: var(--accent-color);
+            margin-top: 5px;
+        }
+
+        .form-section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-color);
+        }
+
+        @media (max-width: 991px) {
+            .booking-wrapper {
+                flex-direction: column-reverse;
+            }
+
+            .booking-sidebar {
+                position: static;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header"
+        style="background-image: linear-gradient(rgba(123, 80, 55, 0.8), rgba(123, 80, 55, 0.9)), url('Photos and videos/17.avif');">
+        <div class="container">
+            <h1 class="page-title">احجز موعدك</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span><i class="fa-solid fa-angle-left"></i></span>
+                <span>الحجز</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section>
+        <div class="container">
+            <div class="booking-wrapper">
+
+                <!-- Main Form -->
+                <div class="booking-form">
+                    <form id="fullBookingForm" class="wizard-form">
+
+                        <!-- Wizard Progress -->
+                        <div class="wizard-steps">
+                            <div class="step-indicator active">
+                                <div class="step-circle">1</div>
+                                <span class="step-label">بيانات المالك</span>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="step-circle">2</div>
+                                <span class="step-label">بيانات الكلب والخدمة</span>
+                            </div>
+                            <div class="step-indicator">
+                                <div class="step-circle">3</div>
+                                <span class="step-label">مراجعة وتأكيد</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 1: Owner Info -->
+                        <div class="wizard-step">
+                            <h3 class="form-section-title">بيانات المالك</h3>
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="firstName" class="form-label">الاسم الأول *</label>
+                                    <input type="text" id="firstName" class="form-control" required
+                                        placeholder="مثال: أحمد">
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="lastName" class="form-label">اسم العائلة *</label>
+                                    <input type="text" id="lastName" class="form-control" required
+                                        placeholder="مثال: محمد">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="phone" class="form-label">رقم الهاتف *</label>
+                                    <input type="tel" id="phone" class="form-control" required placeholder="+852 ...">
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="email" class="form-label">البريد الإلكتروني *</label>
+                                    <input type="email" id="email" class="form-control" required
+                                        placeholder="email@example.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Pet Info & Booking -->
+                        <div class="wizard-step">
+                            <h3 class="form-section-title">بيانات الكلب</h3>
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="dogName" class="form-label">اسم الكلب *</label>
+                                    <input type="text" id="dogName" class="form-control" required
+                                        placeholder="اسم كلبك الأليف">
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="dogBreed" class="form-label">الفصيلة</label>
+                                    <input type="text" id="dogBreed" class="form-control"
+                                        placeholder="مثال: جولدن ريتريفر">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="dogAge" class="form-label">العمر (بالسنوات)</label>
+                                    <input type="number" id="dogAge" class="form-control" min="0" step="0.5"
+                                        placeholder="مثال: 2.5">
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="dogWeight" class="form-label">الوزن التقريبي</label>
+                                    <select id="dogWeight" class="form-control">
+                                        <option value="" disabled selected>اختر الوزن التقريبي...</option>
+                                        <option value="small">أقل من 10 كجم</option>
+                                        <option value="medium">10-25 كجم</option>
+                                        <option value="large">أكثر من 25 كجم</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h3 class="form-section-title" style="margin-top: 2rem;">تفاصيل الحجز</h3>
+                            <div class="form-group">
+                                <label for="mainService" class="form-label">الخدمة المطلوبة *</label>
+                                <select id="mainService" class="form-control" required>
+                                    <option value="" disabled selected>اختر...</option>
+                                    <option value="boarding">إقامة (كلاسيكية/مميزة)</option>
+                                    <option value="daycare">رعاية نهارية (Day Care)</option>
+                                    <option value="grooming">حلاقة وعناية</option>
+                                    <option value="walking">جولة مشي</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-col form-group">
+                                    <label for="bStartDate" class="form-label">تاريخ البدء/الموعد *</label>
+                                    <input type="date" id="bStartDate" class="form-control" required>
+                                </div>
+                                <div class="form-col form-group">
+                                    <label for="bEndDate" class="form-label">تاريخ الانتهاء (للإقامة فقط)</label>
+                                    <input type="date" id="bEndDate" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes" class="form-label">ملاحظات إضافية أو متطلبات طبية تخص كلبك</label>
+                                <textarea id="notes" class="form-control" rows="4"
+                                    placeholder="هل يعاني كلبك من أي حساسية؟ هل يتناول أدوية معينة؟"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Review -->
+                        <div class="wizard-step">
+                            <h3 class="form-section-title">مراجعة وتأكيد</h3>
+
+                            <div class="review-box">
+                                <p class="review-item">الاسم: <strong id="sumName"></strong></p>
+                                <p class="review-item">الهاتف: <strong id="sumPhone"></strong></p>
+                                <p class="review-item">اسم الكلب: <strong id="sumDogName"></strong></p>
+                                <p class="review-item">الخدمة المطلوبة: <strong id="sumService"></strong></p>
+                                <p class="review-item">تاريخ البدء: <strong id="sumDate"></strong></p>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms" class="form-label" style="margin-bottom: 0;">أوافق على <a href="#"
+                                        style="color: var(--primary-color); text-decoration: underline;">الشروط
+                                        والأحكام</a>
+                                    الخاصة بلوفنج هومز.</label>
+                            </div>
+                        </div>
+
+                        <div class="wizard-buttons">
+                            <button type="button" class="btn btn-secondary" id="btnPrev"
+                                style="border: 1px solid #ccc; background: none; color: #333; padding: 12px 30px;">السابق</button>
+                            <button type="button" class="btn btn-primary" id="btnNext"
+                                style="padding: 12px 40px;">التالي</button>
+                            <button type="submit" class="btn btn-accent" id="btnSubmit"
+                                style="padding: 12px 40px; display: none;">تأكيد الحجز</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sidebar Tips / info -->
+                <div class="booking-sidebar">
+                    <h3 class="sidebar-title">معلومات هامة</h3>
+                    <ul class="sidebar-list">
+                        <li>
+                            <i class="fa-solid fa-syringe"></i>
+                            <span>يجب أن تكون جميع التطعيمات محدثة وسارية المفعول (Rabies, DHPP, Bordetella). سيتم طلب
+                                شهادة التطعيم.</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>مواعيد تسجيل الدخول والخروج للإقامة هي من 8 صباحاً حتى 6 مساءً.</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-ban"></i>
+                            <span>في حال إلغاء الحجز، يُرجى إعلامنا قبل 48 ساعة على الأقل لاسترداد العربون.</span>
+                        </li>
+                    </ul>
+                    <hr style="border-color: rgba(255,255,255,0.2); margin: 2rem 0;">
+                    <h4 style="margin-bottom: 1rem;">هل تواجه مشكلة في الحجز؟</h4>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">تواصل معنا مباشرة عبر واتساب وسنقوم بمساعدتك.</p>
+                    <a href="https://wa.me/85298765432" class="btn btn-accent btn-block"
+                        style="background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem;"></i> محادثة واتساب
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+    <script>
+        // Additional Booking Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auto-select service if passed in URL query param
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceParam = urlParams.get('service');
+            const packageParam = urlParams.get('package');
+            const mainServiceSelect = document.getElementById('mainService');
+
+            if (serviceParam && mainServiceSelect) {
+                mainServiceSelect.value = serviceParam;
+            } else if (packageParam && mainServiceSelect) {
+                if (packageParam === 'daycare') {
+                    mainServiceSelect.value = 'daycare';
+                } else if (packageParam === 'premium' || packageParam === 'classic') {
+                    mainServiceSelect.value = 'boarding';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

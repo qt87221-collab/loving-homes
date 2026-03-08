@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="معرض صور لوفنج هومز - فندق كلاب فاخر في هونغ كونغ. شاهد مرافقنا الرائعة وأنشطة كلابنا السعيدة.">
+    <title>معرض الصور | لوفنج هومز - فندق كلاب فاخر في هونغ كونغ</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+
+    <style>
+        /* =========================================================================
+           Gallery Page Specific Styles
+           ========================================================================= */
+
+        /* --- Filter Tabs --- */
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: 2px solid var(--secondary-color);
+            background: transparent;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- Gallery Grid --- */
+        .gallery-section {
+            padding: 5rem 0 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            background: #f0f0f0;
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+            aspect-ratio: 2 / 1;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+            aspect-ratio: 1 / 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(123, 80, 55, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.2rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            transform: translateY(10px);
+            transition: transform 0.35s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            width: 55px;
+            height: 55px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            opacity: 0;
+            transition: all 0.35s ease;
+        }
+
+        .gallery-item:hover .gallery-zoom-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Hidden items (for Load More) */
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        /* --- Load More Button --- */
+        .load-more-wrap {
+            text-align: center;
+            padding: 3rem 0 5rem;
+        }
+
+        .btn-load-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 14px 40px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-load-more:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(123, 80, 55, 0.25);
+        }
+
+        .btn-load-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-load-more:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* --- Lightbox Overlay --- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.93);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        #lightboxImg {
+            max-width: 85vw;
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+            transition: opacity 0.25s ease;
+        }
+
+        .lightbox-caption-bar {
+            margin-top: 1.2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .lightbox-caption-bar .lb-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.82rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-caption-bar p {
+            font-size: 1.05rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .lightbox-counter {
+            font-size: 0.85rem;
+            opacity: 0.55;
+            margin-top: 0.3rem;
+        }
+
+        /* Lightbox Close Button */
+        .lb-close {
+            position: fixed;
+            top: 20px;
+            left: 25px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s;
+            z-index: 10000;
+        }
+
+        .lb-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Lightbox Navigation */
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s;
+            z-index: 10000;
+        }
+
+        .lb-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lb-prev {
+            right: 20px;
+        }
+
+        .lb-next {
+            left: 20px;
+        }
+
+        /* Lightbox loading spinner */
+        .lb-spinner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            display: none;
+        }
+
+        /* --- Stats Bar --- */
+        .gallery-stats-bar {
+            background: var(--primary-color);
+            padding: 2rem 0;
+            color: white;
+        }
+
+        .stats-bar-grid {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .stats-bar-item {
+            text-align: center;
+        }
+
+        .stats-bar-item .num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stats-bar-item .lbl {
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.wide {
+                grid-column: span 2;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+                aspect-ratio: 1 / 1;
+            }
+
+            .lb-nav {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+
+            .lb-prev {
+                right: 10px;
+            }
+
+            .lb-next {
+                left: 10px;
+            }
+
+            .stats-bar-grid {
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div>
+            <h1 class="page-title">معرض الصور</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>معرض الصور</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="gallery-stats-bar">
+        <div class="container">
+            <div class="stats-bar-grid">
+                <div class="stats-bar-item">
+                    <span class="num">+200</span>
+                    <span class="lbl">صورة في المعرض</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="num">+5000</span>
+                    <span class="lbl">كلب سعيد</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="num">8</span>
+                    <span class="lbl">سنوات من الرعاية</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="num">4</span>
+                    <span class="lbl">مرافق فاخرة</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">لحظات لا تُنسى</h2>
+            <p class="section-subtitle">استعرض أجمل اللحظات من داخل لوفنج هومز</p>
+
+            <!-- Filter Buttons -->
+            <div class="gallery-filter" id="galleryFilter">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="facilities">المرافق</button>
+                <button class="filter-btn" data-filter="dogs">الكلاب</button>
+                <button class="filter-btn" data-filter="grooming">الحلاقة</button>
+                <button class="filter-btn" data-filter="team">الفريق</button>
+                <button class="filter-btn" data-filter="activity">الأنشطة</button>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+
+                <!-- Row 1 -->
+                <div class="gallery-item wide" data-category="facilities"
+                    data-caption="منطقة اللعب الكبرى - حيث يتسلى كلبك بحرية" data-tag="المرافق">
+                    <img src="Photos and videos/25.avif" alt="منطقة اللعب الكبرى" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">المرافق</span>
+                        <p class="gallery-caption">منطقة اللعب الكبرى - حيث يتسلى كلبك بحرية</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="dogs" data-caption="لحظة مرح داخل الفندق" data-tag="الكلاب">
+                    <img src="Photos and videos/1.avif" alt="كلب يلعب في الفندق" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الكلاب</span>
+                        <p class="gallery-caption">لحظة مرح داخل الفندق</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="team" data-caption="فريقنا الرائع يعتني بكل كلب بحب"
+                    data-tag="الفريق">
+                    <img src="Photos and videos/2.avif" alt="فريق العمل مع الكلاب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الفريق</span>
+                        <p class="gallery-caption">فريقنا الرائع يعتني بكل كلب بحب</p>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="gallery-item" data-category="grooming" data-caption="جلسة حلاقة احترافية بأيدي خبراء"
+                    data-tag="الحلاقة">
+                    <img src="Photos and videos/9.avif" alt="حلاقة الكلاب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الحلاقة</span>
+                        <p class="gallery-caption">جلسة حلاقة احترافية بأيدي خبراء</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item tall" data-category="facilities"
+                    data-caption="غرف الإقامة الفاخرة - راحة مطلقة لكلبك" data-tag="المرافق">
+                    <img src="Photos and videos/32.avif" alt="غرفة إقامة فاخرة" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">المرافق</span>
+                        <p class="gallery-caption">غرف الإقامة الفاخرة - راحة مطلقة لكلبك</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="dogs" data-caption="كلب يستمتع بوقت الراحة في الفندق"
+                    data-tag="الكلاب">
+                    <img src="Photos and videos/3.avif" alt="كلب في وقت الراحة" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الكلاب</span>
+                        <p class="gallery-caption">كلب يستمتع بوقت الراحة في الفندق</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="activity" data-caption="جولة مشي ممتعة في حدائق هونغ كونغ"
+                    data-tag="الأنشطة">
+                    <img src="Photos and videos/20.avif" alt="مشي الكلاب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الأنشطة</span>
+                        <p class="gallery-caption">جولة مشي ممتعة في حدائق هونغ كونغ</p>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="gallery-item" data-category="grooming"
+                    data-caption="تدليك وعناية بالفرو بأفضل المنتجات الطبيعية" data-tag="الحلاقة">
+                    <img src="Photos and videos/11.avif" alt="عناية بالفرو" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الحلاقة</span>
+                        <p class="gallery-caption">تدليك وعناية بالفرو بأفضل المنتجات الطبيعية</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item wide" data-category="activity"
+                    data-caption="ساعة اللعب الجماعي - الكلاب أصدقاء أيضاً!" data-tag="الأنشطة">
+                    <img src="Photos and videos/4.avif" alt="كلاب تلعب معاً" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الأنشطة</span>
+                        <p class="gallery-caption">ساعة اللعب الجماعي - الكلاب أصدقاء أيضاً!</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="team" data-caption="الدكتور جيمس يُجري فحصاً صحياً دورياً"
+                    data-tag="الفريق">
+                    <img src="Photos and videos/13.avif" alt="الطبيب البيطري مع الكلب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الفريق</span>
+                        <p class="gallery-caption">الدكتور جيمس يُجري فحصاً صحياً دورياً</p>
+                    </div>
+                </div>
+
+                <!-- --- HIDDEN ITEMS (Load More) --- -->
+                <div class="gallery-item hidden" data-category="dogs" data-caption="كلب صغير يستكشف فندقه الجديد"
+                    data-tag="الكلاب">
+                    <img src="Photos and videos/5.avif" alt="كلب صغير" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الكلاب</span>
+                        <p class="gallery-caption">كلب صغير يستكشف فندقه الجديد</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item hidden" data-category="facilities"
+                    data-caption="مسبح كلابنا - ترفيه وتدريب في آن واحد" data-tag="المرافق">
+                    <img src="Photos and videos/6.avif" alt="مسبح الكلاب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">المرافق</span>
+                        <p class="gallery-caption">مسبح كلابنا - ترفيه وتدريب في آن واحد</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item hidden" data-category="team" data-caption="فريق الأنشطة يصمم لعبة مخصصة"
+                    data-tag="الفريق">
+                    <img src="Photos and videos/7.avif" alt="الفريق مع الكلاب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الفريق</span>
+                        <p class="gallery-caption">فريق الأنشطة يصمم لعبة مخصصة</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item hidden wide" data-category="activity"
+                    data-caption="نشاط الصباح - اليوغا مع الكلاب!" data-tag="الأنشطة">
+                    <img src="Photos and videos/10.avif" alt="أنشطة الكلاب في الصباح" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الأنشطة</span>
+                        <p class="gallery-caption">نشاط الصباح - اليوغا مع الكلاب!</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item hidden" data-category="dogs" data-caption="كلب الحارس يُرحّب بالضيوف الجدد"
+                    data-tag="الكلاب">
+                    <img src="Photos and videos/12.avif" alt="كلب في الفندق" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الكلاب</span>
+                        <p class="gallery-caption">كلب الحارس يُرحّب بالضيوف الجدد</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item hidden" data-category="grooming"
+                    data-caption="الاهتمام بالتفاصيل في كل جلسة حلاقة" data-tag="الحلاقة">
+                    <img src="Photos and videos/14.avif" alt="حلاقة مفصلة للكلب" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <span class="gallery-tag">الحلاقة</span>
+                        <p class="gallery-caption">الاهتمام بالتفاصيل في كل جلسة حلاقة</p>
+                    </div>
+                </div>
+
+            </div><!-- /gallery-grid -->
+
+            <!-- Load More Button -->
+            <div class="load-more-wrap" id="loadMoreWrap">
+                <button class="btn-load-more" id="loadMoreBtn">
+                    <i class="fa-solid fa-rotate"></i>
+                    تحميل المزيد من الصور
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="معرض الصور الكامل">
+        <button class="lb-close" id="lbClose" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="lb-nav lb-prev" id="lbPrev" aria-label="الصورة السابقة">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <button class="lb-nav lb-next" id="lbNext" aria-label="الصورة التالية">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="lightbox-inner">
+            <div class="lightbox-img-wrap">
+                <img id="lightboxImg" src="" alt="">
+            </div>
+            <div class="lightbox-caption-bar">
+                <span class="lb-tag" id="lbTag"></span>
+                <p id="lbCaption"></p>
+                <p class="lightbox-counter" id="lbCounter"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>موقعنا</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118151.05318625298!2d114.116666!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3403e2eda332980f%3A0xf08ab3badbeac97c!2sHong%20Kong!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s"
+                        width="100%" height="150" style="border:0; border-radius: 8px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="خريطة موقع لوفنج هومز"></iframe>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+
+    <!-- Gallery JS -->
+    <script>
+        (function () {
+            'use strict';
+
+            const grid = document.getElementById('galleryGrid');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const loadMoreWrap = document.getElementById('loadMoreWrap');
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbCaption = document.getElementById('lbCaption');
+            const lbTag = document.getElementById('lbTag');
+            const lbCounter = document.getElementById('lbCounter');
+            const lbClose = document.getElementById('lbClose');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+
+            let currentFilter = 'all';
+            let currentIndex = 0;
+            let visibleItems = [];   // items currently shown in grid (after filter)
+            let allItems = [];   // all items regardless of filter
+
+            /* ------------------------------------------------------------------ */
+            /*  Helper: get all gallery items arrays                               */
+            /* ------------------------------------------------------------------ */
+            function getAllItems() {
+                return Array.from(grid.querySelectorAll('.gallery-item'));
+            }
+
+            function getFilteredItems() {
+                return getAllItems().filter(item => {
+                    if (currentFilter === 'all') return true;
+                    return item.dataset.category === currentFilter;
+                });
+            }
+
+            /* ------------------------------------------------------------------ */
+            /*  Filter logic                                                       */
+            /* ------------------------------------------------------------------ */
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    applyFilter();
+                });
+            });
+
+            function applyFilter() {
+                const items = getAllItems();
+                items.forEach(item => {
+                    const matchesFilter = currentFilter === 'all' || item.dataset.category === currentFilter;
+                    if (matchesFilter) {
+                        // Show only if not explicitly hidden by load-more
+                        if (!item.classList.contains('hidden')) {
+                            item.style.display = '';
+                        }
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.92)';
+                        if (matchesFilter) {
+                            item.style.display = item.classList.contains('hidden') ? 'none' : '';
+                            requestAnimationFrame(() => {
+                                item.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            });
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                // Re-bind lightbox for visible items
+                bindLightboxEvents();
+            }
+
+            /* ------------------------------------------------------------------ */
+            /*  Load More                                                          */
+            /* ------------------------------------------------------------------ */
+            loadMoreBtn.addEventListener('click', () => {
+                const hiddenItems = getAllItems().filter(item => item.classList.contains('hidden'));
+                hiddenItems.forEach((item, i) => {
+                    setTimeout(() => {
+                        item.classList.remove('hidden');
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        item.style.display = '';
+                        requestAnimationFrame(() => {
+                            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        });
+                    }, i * 80);
+                });
+
+                // Hide the load more button after loading
+                setTimeout(() => {
+                    loadMoreWrap.style.display = 'none';
+                    bindLightboxEvents();
+                }, hiddenItems.length * 80 + 400);
+            });
+
+            /* ------------------------------------------------------------------ */
+            /*  Lightbox                                                           */
+            /* ------------------------------------------------------------------ */
+            function bindLightboxEvents() {
+                const clickableItems = getAllItems().filter(item => getComputedStyle(item).display !== 'none' && !item.classList.contains('hidden'));
+                clickableItems.forEach((item, idx) => {
+                    // Remove old listener to avoid duplicates
+                    item.removeEventListener('click', item._lbHandler);
+                    item._lbHandler = () => openLightbox(clickableItems, idx);
+                    item.addEventListener('click', item._lbHandler);
+                });
+            }
+
+            function openLightbox(items, index) {
+                visibleItems = items;
+                currentIndex = index;
+                showImage(currentIndex);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function showImage(index) {
+                const item = visibleItems[index];
+                const img = item.querySelector('img');
+                const caption = item.dataset.caption || '';
+                const tag = item.dataset.tag || '';
+
+                lbImg.style.opacity = '0';
+                setTimeout(() => {
+                    lbImg.src = img.src;
+                    lbImg.alt = img.alt;
+                    lbCaption.textContent = caption;
+                    lbTag.textContent = tag;
+                    lbCounter.textContent = (index + 1) + ' / ' + visibleItems.length;
+                    lbImg.style.opacity = '1';
+                }, 200);
+            }
+
+            lbClose.addEventListener('click', closeLightbox);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            lbPrev.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+                showImage(currentIndex);
+            });
+
+            lbNext.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % visibleItems.length;
+                showImage(currentIndex);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; showImage(currentIndex); }
+                if (e.key === 'ArrowLeft') { currentIndex = (currentIndex + 1) % visibleItems.length; showImage(currentIndex); }
+            });
+
+            // Touch swipe support for lightbox
+            let touchStartX = 0;
+            lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+            lightbox.addEventListener('touchend', e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) { currentIndex = (currentIndex + 1) % visibleItems.length; }
+                    else { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; }
+                    showImage(currentIndex);
+                }
+            });
+
+            /* ------------------------------------------------------------------ */
+            /*  Init                                                               */
+            /* ------------------------------------------------------------------ */
+            bindLightboxEvents();
+
+        })();
+    </script>
+</body>
+
+</html>

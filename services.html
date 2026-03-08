@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="تعرف على خدمات لوفنج هومز المتنوعة: إقامة فاخرة، حلاقة، مشي يومي، ورعاية بيطرية. باقات تناسب احتياجات كلبك.">
+    <title>الخدمات والباقات | لوفنج هومز</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Dark Mode Init -->
+    <script src="dark-mode.js"></script>
+
+    <style>
+        .service-detail-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .service-detail-section:nth-child(even) .service-row {
+            flex-direction: row-reverse;
+        }
+
+        .service-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .service-text {
+            flex: 1;
+        }
+
+        .service-text h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .service-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .service-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 2px;
+            color: var(--accent-color);
+        }
+
+        .service-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+
+            .service-row,
+            .service-detail-section:nth-child(even) .service-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <!-- Navigation injected dynamically by main.js -->
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header"
+        style="background-image: linear-gradient(rgba(123, 80, 55, 0.8), rgba(123, 80, 55, 0.9)), url('Photos and videos/25.avif');">
+        <div class="container">
+            <h1 class="page-title">خدماتنا</h1>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span><i class="fa-solid fa-angle-left"></i></span>
+                <span>الخدمات</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services -->
+    <section>
+        <div class="container">
+
+            <!-- Boarding -->
+            <div class="service-detail-section" id="boarding">
+                <div class="service-row">
+                    <div class="service-text">
+                        <h2><i class="fa-solid fa-house-chimney-window"></i> الإقامة الفاخرة (Boarding)</h2>
+                        <p>نقدم بيئة مريحة وآمنة وشبيهة بالمنزل لتخفيف قلق الانفصال عنك. أجنحتنا وغرفنا الفاخرة مصممة
+                            لضمان راحة وسلامة كلبك.</p>
+                        <ul class="service-features">
+                            <li>غرف مكيفة بالكامل مع أسرة مريحة</li>
+                            <li>كاميرات مراقبة حية متاحة 24/7</li>
+                            <li>تغذية مبنية على نظام صحي مخصص</li>
+                            <li>ألعاب وأنشطة تفاعلية يومية</li>
+                        </ul>
+                        <a href="booking.html?service=boarding" class="btn btn-primary">احجز الإقامة</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="Photos and videos/32.avif" alt="غرفة إقامة فاخرة للكلاب" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grooming -->
+            <div class="service-detail-section" id="grooming">
+                <div class="service-row">
+                    <div class="service-text">
+                        <h2><i class="fa-solid fa-scissors"></i> خدمات الحلاقة (Grooming)</h2>
+                        <p>نحول جلسة الاستحمام والحلاقة إلى تجربة مريحة وممتعة! نستخدم أفضل المنتجات الطبيعية للحفاظ على
+                            صحة وجمال فرو كلبك.</p>
+                        <ul class="service-features">
+                            <li>قص وتصفيف الشعر بواسطة خبراء محترفين</li>
+                            <li>حمامات علاجية وجلسات مساج</li>
+                            <li>تنظيف الأذن وتقليم الأظافر</li>
+                            <li>شامبو طبيعي مضاد للحساسية</li>
+                        </ul>
+                        <a href="booking.html?service=grooming" class="btn btn-primary">احجز موعد حلاقة</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="Photos and videos/9.avif" alt="كلب أثناء جلسة الحلاقة" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Walking -->
+            <div class="service-detail-section" id="walking">
+                <div class="service-row">
+                    <div class="service-text">
+                        <h2><i class="fa-solid fa-shoe-prints"></i> المشي اليومي (Walking)</h2>
+                        <p>التمرين اليومي ضروري لصحة الكلب الجسدية والنفسية. نوفر جولات في أفضل حدائق وطرق هونغ كونغ
+                            الآمنة.</p>
+                        <ul class="service-features">
+                            <li>جولات لا تقل عن 30-45 دقيقة</li>
+                            <li>مرافقة من قبل مختصين في سلوك الكلاب</li>
+                            <li>مسارات مختارة بعناية بعيداً عن التلوث</li>
+                            <li>توفير الماء والتنظيف أثناء المشي</li>
+                        </ul>
+                        <a href="booking.html?service=walking" class="btn btn-primary">اطلب جولة مشي</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="Photos and videos/20.avif" alt="كلب يمشي في حديقة" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vet Services -->
+            <div class="service-detail-section" id="vet" style="border-bottom: none;">
+                <div class="service-row">
+                    <div class="service-text">
+                        <h2><i class="fa-solid fa-stethoscope"></i> الخدمات البيطرية 24/7</h2>
+                        <p>صحة كلبك هي أولويتنا. نوفر عيادة بيطرية مجهزة للتعامل مع الفحوصات الدورية أو الحالات الطارئة
+                            طوال أيام الأسبوع.</p>
+                        <ul class="service-features">
+                            <li>طبيب بيطري مقيم وعيادة مجهزة بالكامل</li>
+                            <li>فحص طبي شامل عند الاستلام</li>
+                            <li>إدارة الأدوية للكلاب التي تحتاج رعاية خاصة</li>
+                            <li>استجابة فورية لأي طارئ طبي</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary">تواصل معنا للاستشارة</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="Photos and videos/13.avif" alt="طبيب بيطري يفحص كلباً" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="bg-light" id="packages">
+        <div class="container">
+            <h2 class="section-title">باقات الإقامة المتكاملة</h2>
+            <p class="section-subtitle">اختر الباقة الأنسب لاحتياجات كلبك</p>
+
+            <div class="pricing-grid">
+                <!-- Day Care -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">يومية (Day Care)</h3>
+                    <div class="pricing-price">$350 <span>/يوم</span></div>
+                    <ul class="pricing-list">
+                        <li><i class="fa-solid fa-check"></i> رعاية نهارية كاملة (8ص-6م)</li>
+                        <li><i class="fa-solid fa-check"></i> وجبتان صحيتان</li>
+                        <li><i class="fa-solid fa-check"></i> جولة مشي واحدة (30 دقيقة)</li>
+                        <li><i class="fa-solid fa-check"></i> أنشطة ترفيهية واجتماعية</li>
+                        <li style="color: #ccc;"><i class="fa-solid fa-xmark"></i> كاميرات مراقبة حية</li>
+                        <li style="color: #ccc;"><i class="fa-solid fa-xmark"></i> حلاقة وغسيل</li>
+                    </ul>
+                    <a href="booking.html?package=daycare" class="btn btn-block"
+                        style="border: 2px solid var(--primary-color); color: var(--primary-color);">اختر الباقة</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card featured">
+                    <h3 class="pricing-title">مميزة (Premium)</h3>
+                    <div class="pricing-price">$1200 <span>/لليلة</span></div>
+                    <ul class="pricing-list">
+                        <li><i class="fa-solid fa-check"></i> إقامة في جناح فاخر مستقل</li>
+                        <li><i class="fa-solid fa-check"></i> 4 جولات مشي يومياً</li>
+                        <li><i class="fa-solid fa-check"></i> كاميرات مراقبة حية 24/7</li>
+                        <li><i class="fa-solid fa-check"></i> تقارير وفيديوهات يومية</li>
+                        <li><i class="fa-solid fa-check"></i> حلاقة أسبوعية مجانية</li>
+                        <li><i class="fa-solid fa-check"></i> نظام غذائي فاخر مخصص</li>
+                    </ul>
+                    <a href="booking.html?package=premium" class="btn btn-primary btn-block">اختر الباقة</a>
+                </div>
+
+                <!-- Classic -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">كلاسيكية (Classic)</h3>
+                    <div class="pricing-price">$800 <span>/لليلة</span></div>
+                    <ul class="pricing-list">
+                        <li><i class="fa-solid fa-check"></i> إقامة في غرفة مريحة</li>
+                        <li><i class="fa-solid fa-check"></i> جولتان مشي يومياً</li>
+                        <li><i class="fa-solid fa-check"></i> تقارير يومية بالصور</li>
+                        <li><i class="fa-solid fa-check"></i> حلاقة وغسيل (عند الإقامة لأسبوع+)</li>
+                        <li><i class="fa-solid fa-check"></i> وجبات صحية قياسية</li>
+                        <li style="color: #ccc;"><i class="fa-solid fa-xmark"></i> كاميرات مراقبة حية</li>
+                    </ul>
+                    <a href="booking.html?package=classic" class="btn btn-block"
+                        style="border: 2px solid var(--primary-color); color: var(--primary-color);">اختر الباقة</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>لوفنج هومز</h3>
+                    <p>فندق الكلاب الفاخر في هونغ كونغ. نقدم أفضل خدمات الرعاية والإقامة لضمان سعادة وراحة أصدقائك
+                        الصغار.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="booking.html">احجز الآن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="blog.html">المدونة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>معلومات الاتصال</h3>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="margin-left: 10px;"></i> سنترال ديسريكت، هونغ
+                            كونغ</li>
+                        <li><i class="fa-solid fa-phone" style="margin-left: 10px;"></i> <span dir="ltr">+852 1234
+                                5678</span></li>
+                        <li><i class="fa-brands fa-whatsapp" style="margin-left: 10px;"></i> <span dir="ltr">+852 9876
+                                5432</span></li>
+                        <li><i class="fa-solid fa-envelope" style="margin-left: 10px;"></i> hello@lovinghomes.hk</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 لوفنج هومز (Loving Homes). جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (WhatsApp + Search) -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/85298765432" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+            aria-label="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="search-float" aria-label="بحث في الموقع">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." />
+            <button class="search-close" aria-label="إغلاق البحث"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-results"></div>
+    </div>
+
+    <!-- Main JS -->
+    <script src="main.js"></script>
+</body>
+
+</html>
